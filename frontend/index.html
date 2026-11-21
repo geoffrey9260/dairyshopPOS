@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dairy Shop POS</title>
+  </head>
+  <body>
+    <div id="root">
+      <div id="boot-message" style="padding: 24px; font-family: system-ui, sans-serif; color: #18212f;">
+        Loading Dairy Shop POS...
+      </div>
+    </div>
+    <script>
+      window.addEventListener("error", (event) => {
+        const bootMessage = document.getElementById("boot-message");
+        if (!bootMessage) return;
+        bootMessage.textContent =
+          "Dairy Shop POS could not start. Check that the frontend dev server is running, then refresh the page.";
+        if (event.message) {
+          const detail = document.createElement("pre");
+          detail.style.whiteSpace = "pre-wrap";
+          detail.style.marginTop = "12px";
+          detail.textContent = event.message;
+          bootMessage.appendChild(detail);
+        }
+      });
+    </script>
+    <script
+      type="module"
+      src="/src/main.tsx"
+      onerror="document.getElementById('boot-message').textContent = 'Dairy Shop POS could not load its app script. Refresh the page or restart the frontend dev server.'"
+    ></script>
+  </body>
+</html>
